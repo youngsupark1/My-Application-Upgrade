@@ -2,21 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [inputIdCount, setInputIdCount] = useState(0);
-  const [inputPassCount, setInputPassCount] = useState(0);
-
   const navigate = useNavigate();
 
   const handleSignClick = () => {
     navigate("/signup");
-  };
-
-  const onInputIdHandler = (e) => {
-    setInputIdCount(e.target.value.length);
-  };
-
-  const onInputPassHandler = (e) => {
-    setInputPassCount(e.target.value.length);
   };
 
   return (
@@ -30,13 +19,8 @@ export default function Login() {
             type="text"
             placeholder="아이디"
             maxLength="10"
-            onChange={onInputIdHandler}
           />
         </div>
-        <p>
-          <span>{inputIdCount}</span>
-          <span>/10 자</span>
-        </p>
 
         <div className="mt-5 text-[25px] font-bold">
           <p>비밀번호</p>
@@ -45,13 +29,8 @@ export default function Login() {
             type="password"
             placeholder="비밀번호"
             maxLength="15"
-            onChange={onInputPassHandler}
           />
         </div>
-        <p>
-          <span>{inputPassCount}</span>
-          <span>/15 자</span>
-        </p>
 
         <div className=" w-[600px] h-[60px] mt-10 m-auto text-[20px] bg-stone-400 content-center text-white rounded-[10px]">
           <button type="submit">Login</button>

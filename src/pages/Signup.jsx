@@ -1,23 +1,6 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  const [inputIdCount, setInputIdCount] = useState(0);
-  const [inputPassCount, setInputPassCount] = useState(0);
-  const [inputNameCount, setInputNameCount] = useState(0);
-
-  const onInputIdHandler = (e) => {
-    setInputIdCount(e.target.value.length);
-  };
-
-  const onInputPassHandler = (e) => {
-    setInputPassCount(e.target.value.length);
-  };
-
-  const onInputNameHandler = (e) => {
-    setInputNameCount(e.target.value.length);
-  };
-
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -35,13 +18,8 @@ export default function Signup() {
             type="text"
             placeholder="아이디"
             maxLength="10"
-            onChange={onInputIdHandler}
           />
         </div>
-        <p>
-          <span>{inputIdCount}</span>
-          <span>/10 자</span>
-        </p>
 
         <div className="mt-5 text-[25px] font-bold">
           <p>비밀번호</p>
@@ -50,13 +28,8 @@ export default function Signup() {
             type="password"
             placeholder="비밀번호"
             maxLength="15"
-            onChange={onInputPassHandler}
           />
         </div>
-        <p>
-          <span>{inputPassCount}</span>
-          <span>/15 자</span>
-        </p>
 
         <div className="mt-5 text-[25px] font-bold">
           <p>닉네임</p>
@@ -65,13 +38,8 @@ export default function Signup() {
             type="text"
             placeholder="닉네임"
             maxLength="10"
-            onChange={onInputNameHandler}
           />
         </div>
-        <p>
-          <span>{inputNameCount}</span>
-          <span>/10 자</span>
-        </p>
 
         <div className=" w-[600px] h-[60px] mt-10 m-auto text-[20px] bg-stone-400 content-center text-white rounded-[10px]">
           <button type="submit">완료</button>
