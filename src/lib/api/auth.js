@@ -20,7 +20,8 @@ export const register = async ({ id, password, nickname }) => {
 //로그인
 export const login = async ({ id, password }) => {
   try {
-    const response = await axios.post(`${AUTH_API_HOST}/login?expiresIn=10m`, {
+    // 유효시간을 30분인 accessToken 요청
+    const response = await axios.post(`${AUTH_API_HOST}/login?expiresIn=30m`, {
       id,
       password,
     });
@@ -45,8 +46,8 @@ export const getUserInfo = async () => {
       });
       return response.data;
     } catch (error) {
-      console.log(error?.response?.data?.message);
-      alert(error?.response?.data?.message);
+      alert("AccessToken 이 만료되었습니다.");
+      localStorage.clear();
     }
   }
 };
