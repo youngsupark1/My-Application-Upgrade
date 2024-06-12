@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import { getUserInfo } from "./lib/api/auth";
+import Layout from "./components/Layout";
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -70,32 +70,20 @@ function App() {
 
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    getUserInfo().then((res) => {
-      if (res) {
-        setUser({
-          userId: res.id,
-          nickname: res.nickname,
-          avater: res.avater,
-        });
-      }
-    });
-  }, []);
-
-  console.log("로그인 된 유저 정보 : ", user);
-
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/"
-            element={<Home expenses={expenses} setExpenses={setExpenses} />}
-          />
-          <Route
-            path="/detail/:id"
-            element={<Detail expenses={expenses} setExpenses={setExpenses} />}
-          />
+          <Route path="/" element={<Layout user={user} setUser={setUser} />}>
+            <Route
+              index
+              element={<Home expenses={expenses} setExpenses={setExpenses} />}
+            />
+            <Route
+              path="/detail/:id"
+              element={<Detail expenses={expenses} setExpenses={setExpenses} />}
+            />
+          </Route>
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/signup" element={<Signup />} />
         </Routes>
