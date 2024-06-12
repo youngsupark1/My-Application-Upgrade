@@ -32,14 +32,14 @@ export default function Layout({ user, setUser }) {
       <nav className="bg-gray-800 text-white p-2.5 flex justify-between items-center fixed w-[calc(100%-2rem)] top-0 z-1000 max-w-[1240px]">
         <div className="flex items-center">
           <a
-            href="#"
+            href="/"
             to="/"
             className="text-white mx-2.5 no-underline hover:underline"
           >
             Home
           </a>
           <a
-            href="#"
+            href="/profile"
             to="/profile"
             className="text-white mx-2.5 no-underline hover:underline"
           >
