@@ -1,15 +1,10 @@
+import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useState } from "react";
 import uuid from "react-uuid";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import { postExpense } from "../lib/api/expense";
 import { useNavigate } from "react-router-dom";
-
-const Section = styled.section`
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 20px;
-`;
 
 const InputRow = styled.div`
   display: flex;
