@@ -12,6 +12,18 @@ export const getExpenses = async () => {
   }
 };
 
+// 특정 지출 데이터 불러오기
+export const getExpense = async ({ queryKey }) => {
+  try {
+    const response = await axios.get(
+      `${JSON_SERVER_HOST}/expenses/${queryKey[1]}`
+    );
+    return response.data;
+  } catch (error) {
+    alert("뭔가 잘못된거 같아요! 데이터를 로드 할 수가 없어요");
+  }
+};
+
 // 지출을 등록
 export const postExpense = async (newExpense) => {
   try {

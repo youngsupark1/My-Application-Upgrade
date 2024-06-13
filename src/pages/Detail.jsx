@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getExpense } from "../lib/api/expense";
 
 const Container = styled.div`
   max-width: 800px;
@@ -61,10 +63,25 @@ export default function Detail() {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const [date, setDate] = useState(selectedExpense.date);
-  const [item, setItem] = useState(selectedExpense.item);
-  const [amount, setAmount] = useState(selectedExpense.amount);
-  const [description, setDescription] = useState(selectedExpense.description);
+  const {
+    data: selectedExpense,
+    isLoding,
+    error,
+  } = useQuery({ queryKey: ["expense", id], queryFn: getExpense });
+
+  const [date, setDate] = useState("");
+  const [item, setItem] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    if (selectedExpense) {
+      setDate(selectedExpense.date);
+      setItem(selectedExpense.item);
+      setAmount(selectedExpense.amount);
+      setDescription(selectedExpense.description);
+    }
+  }, [selectedExpense]);
 
   const handleEdit = () => {
     const datePattern = /^\d{4}-\d{2}-\d{2}$/;
@@ -76,14 +93,6 @@ export default function Detail() {
       alert("유효한 항목과 금액을 입력해주세요.");
       return;
     }
-
-    const newExpense = {
-      id: id,
-      date: date,
-      item: item,
-      amount: amount,
-      description: description,
-    };
   };
 
   return (
