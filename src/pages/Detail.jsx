@@ -1,8 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { editExpense, deleteExpense } from "../redux/slices/authSlice";
 
 const Container = styled.div`
   max-width: 800px;
@@ -61,11 +59,7 @@ const BackButton = styled(Button)`
 
 export default function Detail() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { id } = useParams();
-  const expenses = useSelector((state) => state.expenses);
-
-  const selectedExpense = expenses.find((element) => element.id === id);
 
   const [date, setDate] = useState(selectedExpense.date);
   const [item, setItem] = useState(selectedExpense.item);
@@ -90,14 +84,6 @@ export default function Detail() {
       amount: amount,
       description: description,
     };
-
-    dispatch(editExpense(newExpense));
-    navigate("/");
-  };
-
-  const handleDelete = () => {
-    dispatch(deleteExpense({ id }));
-    navigate("/");
   };
 
   return (
@@ -144,9 +130,7 @@ export default function Detail() {
       </InputGroup>
       <ButtonGroup>
         <Button onClick={handleEdit}>수정</Button>
-        <Button danger="true" onClick={handleDelete}>
-          삭제
-        </Button>
+        <Button danger="true">삭제</Button>
         <BackButton onClick={() => navigate(-1)}>뒤로 가기</BackButton>
       </ButtonGroup>
     </Container>
