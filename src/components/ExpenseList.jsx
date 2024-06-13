@@ -1,14 +1,7 @@
-import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getExpenses } from "../lib/api/expense";
-
-const ExpenseItemList = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
 
 const ExpenseItem = styled.div`
   display: flex;
@@ -76,8 +69,8 @@ export default function ExpenseList() {
   }
 
   return (
-    <Section>
-      <ExpenseItemList>
+    <section className="bg-white rounded-xl p-5">
+      <div className="flex flex-col gap-2.5">
         {expenses.map((expense) => (
           <ExpenseItem
             key={expense.id}
@@ -92,7 +85,7 @@ export default function ExpenseList() {
             <span>{expense.amount.toLocaleString()} 원</span>
           </ExpenseItem>
         ))}
-      </ExpenseItemList>
-    </Section>
+      </div>
+    </section>
   );
 }
