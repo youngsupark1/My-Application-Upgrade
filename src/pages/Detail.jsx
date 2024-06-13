@@ -4,6 +4,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getExpense, putExpense, deleteExpense } from "../lib/api/expense";
 
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+`;
+
 const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
@@ -24,6 +32,11 @@ const InputGroup = styled.div`
   }
 `;
 
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
 const Button = styled.button`
   padding: 10px 20px;
   background-color: ${(props) => (props.danger ? "#ff4d4d" : "#007bff")};
@@ -35,6 +48,14 @@ const Button = styled.button`
 
   &:hover {
     background-color: ${(props) => (props.danger ? "#cc0000" : "#0056b3")};
+  }
+`;
+
+const BackButton = styled(Button)`
+  background-color: #6c757d;
+
+  &:hover {
+    background-color: #5a6268;
   }
 `;
 
@@ -104,7 +125,7 @@ export default function Detail() {
   };
 
   return (
-    <div className="max-w-800 mx-auto p-20 bg-white rounded-lg">
+    <Container>
       <InputGroup>
         <label htmlFor="date">날짜</label>
         <input
@@ -145,18 +166,13 @@ export default function Detail() {
           placeholder="지출 내용"
         />
       </InputGroup>
-      <div className="flex gap-10">
+      <ButtonGroup>
         <Button onClick={handleEdit}>수정</Button>
         <Button danger="true" onClick={handelDeleteExpense}>
           삭제
         </Button>
-        <button
-          className="px-4 py-2 bg-gray-600 text-white rounded-md cursor-pointer transition duration-200 ease-in-out hover:bg-gray-500"
-          onClick={() => navigate(-1)}
-        >
-          뒤로 가기
-        </button>
-      </div>
-    </div>
+        <BackButton onClick={() => navigate(-1)}>뒤로 가기</BackButton>
+      </ButtonGroup>
+    </Container>
   );
 }
