@@ -75,6 +75,10 @@ export default function ExpenseList() {
     return <div>로딩 중 입니다.</div>;
   }
 
+  if (error) {
+    return <div>데이터 조회 중 오류가 났습니다.</div>;
+  }
+
   return (
     <Section>
       <ExpenseItemList>

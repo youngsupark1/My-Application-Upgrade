@@ -69,6 +69,14 @@ export default function Detail() {
     error,
   } = useQuery({ queryKey: ["expense", id], queryFn: getExpense });
 
+  if (isLoding) {
+    return <div>로딩 중 입니다.</div>;
+  }
+
+  if (error) {
+    return <div>데이터 불러오는 중 오류가 났습니다.</div>;
+  }
+
   const [date, setDate] = useState("");
   const [item, setItem] = useState("");
   const [amount, setAmount] = useState("");
