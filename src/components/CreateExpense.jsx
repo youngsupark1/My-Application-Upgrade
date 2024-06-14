@@ -1,7 +1,7 @@
 import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useState } from "react";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postExpense } from "../lib/api/expense";
 import { useNavigate } from "react-router-dom";
@@ -81,7 +81,7 @@ export default function CreateExpense({ user, month }) {
     }
 
     const newExpense = {
-      id: uuid(),
+      id: uuidv4(),
       month: parseInt(newDate.split("-")[1], 10),
       date: newDate,
       item: newItem,
