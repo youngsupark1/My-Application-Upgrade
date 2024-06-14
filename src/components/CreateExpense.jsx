@@ -2,7 +2,7 @@ import { Section } from "../pages/Home";
 import styled from "styled-components";
 import { useState } from "react";
 import uuid from "react-uuid";
-import { QueryClient, useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postExpense } from "../lib/api/expense";
 import { useNavigate } from "react-router-dom";
 
@@ -55,7 +55,8 @@ export default function CreateExpense({ user, month }) {
   const [newItem, setNewItem] = useState("");
   const [newAmount, setNewAmount] = useState("");
   const [newDescription, setNewDescription] = useState("");
-  const queryClient = new QueryClient();
+
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const mutation = useMutation({
