@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const JSON_SERVER_HOST = "http://localhost:5000";
+const JSON_SERVER_HOST = "https://exultant-bronze-marsupial.glitch.me";
 
 // 지출 데이터 가져오기
 export const getExpenses = async () => {
